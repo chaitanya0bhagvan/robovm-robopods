@@ -1,0 +1,8 @@
+<config>    
+    <frameworks>
+        <framework>Realm</framework>
+    </frameworks>
+    <frameworkPaths>
+        <path>libs</path>
+    </frameworkPaths>
+</config>

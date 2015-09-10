@@ -1,0 +1,263 @@
+package: org.robovm.pods.realm
+
+framework: Realm
+
+include: 
+    - ../../../../../../robovm/cocoatouch/src/main/bro-gen/foundation.yaml
+    - ../../../../../../robovm/cocoatouch/src/main/bro-gen/uikit.yaml
+    - ../../../../../../robovm/cocoatouch/src/main/bro-gen/coregraphics.yaml
+
+clang_args: ['-x', 'objective-c']
+
+header_root: '/../robopods/META-INF/robovm/ios/libs/'
+
+headers:
+#    - Realm.framework/Headers/Realm.h
+    - Realm.framework/Headers/RLMArray.h
+#    - Realm.framework/Headers/RLMCollection.h
+#    - Realm.framework/Headers/RLMConstants.h
+#    - Realm.framework/Headers/RLMDefines.h
+#    - Realm.framework/Headers/RLMMigration.h
+#    - Realm.framework/Headers/RLMObject.h
+#    - Realm.framework/Headers/RLMObjectBase.h
+#    - Realm.framework/Headers/RLMObjectBase_Dynamic.h
+#    - Realm.framework/Headers/RLMObjectSchema.h
+#    - Realm.framework/Headers/RLMProperty.h
+#    - Realm.framework/Headers/RLMRealm.h
+#    - Realm.framework/Headers/RLMRealmConfiguration.h
+#    - Realm.framework/Headers/RLMResults.h
+#    - Realm.framework/Headers/RLMSchema.h
+#    - Realm.framework/Headers/RLMRealm_Dynamic.h
+
+typedefs:
+    RLMObjectMigrationBlock: '@Block RLMObjectMigrationBlock'
+    RLMNotificationBlock: '@Block RLMNotificationBlock'
+    RLMMigrationBlock: '@Block RLMMigrationBlock'
+classes:
+    Realm: {} # DONE
+
+    RLMObjectBase:
+        methods: 
+            '+className':
+                property: true
+
+    RLMObject: # DONE
+        properties:
+            '(deletedFromRealm)': # deprecated
+                exclude: true
+        methods:
+            '-isDeletedFromRealm':
+                exclude: true
+            '+className':
+                property: true
+
+    RLMRealm: 
+        properties:
+            'schema':
+                exclude: true
+        methods:
+            '+realmWithConfiguration:error:':
+                trim_after_first_colon: true
+                return_type: RLMRealm
+            '+realmWithPath':
+                name: realmWithPath
+            '+realmWithPath:readOnly:error:':
+                name: realmWithPath
+                return_type: RLMRealm
+            '+realmWithPath:encryptionKey:readOnly:error:':
+                name: realmWithPath
+                return_type: RLMRealm
+            '+setEncryptionKey:forRealmsAtPath:':
+                trim_after_first_colon: true
+                parameters:
+                    key: 
+                        type: NSData
+                    path: 
+                        type: NSString
+            '+inMemoryRealmWithIdentifier':
+                name: inMemoryRealm
+            '+defaultRealmPath':
+                property: true
+            '+setDefaultRealmPath':
+                name: setDefaultRealmPath
+            '+schemaVersionAtPath:encryptionKey:error:':
+                trim_after_first_colon: true
+                parameters:
+                    realmPath: 
+                        type: NSString
+                    key: 
+                        type: NSData
+            '+setDefaultRealmSchemaVersion:withMigrationBlock:':
+                trim_after_first_colon: true
+                parameters:
+                    version: 
+                        type: uint64_t
+                    block:
+                        type: RLMMigrationBlock
+            '+setSchemaVersion:forRealmAtPath:withMigrationBlock:':
+                trim_after_first_colon: true
+                parameters:
+                    version: 
+                        type: uint64_t
+                    realmPath:
+                        type: NSString
+                    block:
+                        type: RLMMigrationBlock
+
+
+    RLMResults:
+        extends:
+            'NSObject<RLMCollection, NSFastEnumeration>'
+        methods:
+            '-firstObject':
+                property: true
+
+    RLMObjectSchema: 
+        methods: 
+            '-objectForKeyedSubscript':
+                return_type: RLMProperty
+
+    RLMArray: 
+        protocols:
+            [RLMCollection, NSFastEnumeration]
+        skip_def_constructor: true
+        methods:
+            '+new':
+                exclude: true
+            '-objectAtIndex:':
+                trim_after_first_colon: true
+            '-firstObject':
+                return_type: RLMObject
+                property: true
+            '-lastObject':
+                return_type: RLMObject
+                property: true
+            '-addObject:':
+                trim_after_first_colon: true
+            '-addObjects:':
+                trim_after_first_colon: true
+                parameters:
+                    objects: 
+                        type: RLMObject
+            '-insertObject:atIndex':
+                trim_after_first_colon: true
+            '-removeObjectAtIndex:':
+                trim_after_first_colon: true
+            '-replaceObjectAtIndex:withObject:':
+                trim_after_first_colon: true
+            '-moveObjectAtIndex:toIndex:':
+                trim_after_first_colon: true
+            '-exchangeObjectAtIndex:withObjectAtIndex':
+                trim_after_first_colon: true
+            '-indexOfObject:':
+                trim_after_first_colon: true
+            '-indexOfObjectWithPredicate:':
+                trim_after_first_colon: true
+            '-objectsWithPredicate:':
+                return_type: 'RLMResults<? extends RLMObject>'
+            '-sortedResultsUsingProperty:ascending:':
+                return_type: 'RLMResults<? extends RLMObject>'
+            '-sortedResultsUsingDescriptors:':
+                return_type: 'RLMResults<? extends RLMObject>'
+            '-objectAtIndexedSubscript:':
+                trim_after_first_colon: true
+                return_type: RLMObject
+            '-setObject:atIndexedSubscript:':
+                trim_after_first_colon: true
+                parameters:
+                    newValue:
+                        type: RLMObject
+                    index:
+                        type: long
+            '-objectAtIndex:':
+                trim_after_first_colon: true
+                return_type: RLMObject
+
+    RLMMigration: 
+        methods:
+            '-enumerateObjects:block:':
+                name: enumerateObjects
+
+    RLMProperty: 
+        methods:
+            '-isEqualToProperty': 
+                name: isEqualToProperty
+
+    RLMRealmConfiguration: 
+        properties:
+            'path':
+                exclude: true
+            'inMemoryIdentifier':
+                exclude: true
+            'encryptionKey':
+                exclude: true
+            'migrationBlock':
+                exclude: true
+            'objectClasses':
+                exclude: true
+        methods:
+            '+defaultConfiguration':
+                property: true
+
+
+    RLMSchema: 
+        methods:
+            '-schemaForClassName':
+                name: schemaForClassName
+
+protocols:
+    RLMCollection:
+        protocols:
+            [NSFastEnumeration]
+        methods:
+            '-objectAtIndex:':
+                trim_after_first_colon: true
+            '-firstObject':
+                return_type: RLMObject
+            '-lastObject':
+                return_type: RLMObject
+            '-indexOfObject:':
+                trim_after_first_colon: true
+            '-indexOfObjectWithPredicate:':
+                trim_after_first_colon: true
+            '-objectsWithPredicate:':
+                trim_after_first_colon: true
+            '-sortedResultsUsingProperty:ascending:':
+                trim_after_first_colon: true
+            '-sortedResultsUsingDescriptors:':
+                trim_after_first_colon: true
+            'objectAtIndexedSubscript:':
+                trim_after_first_colon: true
+            '-valueForKey:':
+                trim_after_first_colon: true
+                return_type: RLMObject
+            '-setValue:forKey:':
+                parameters:
+                    value:
+                        type: RLMObject
+                    key:
+                        type: NSString
+
+functions:
+    RLMDynamicValidatedSet:
+        class: RLMObject
+        name: dynamicValidatedSet
+        parameters:
+            obj:
+                type: 'RLMObjectBasePtr'
+            propName:
+                type: 'String'
+            val:
+                type: 'long'
+    RLMValidatedGetProperty:
+        class: RLMObject
+        name: getProperty
+    RLMDynamicGet:
+        class: RLMObject
+        name: get
+        return_type: 'long'
+    RLMReplaceSharedSchemaMethod:
+        class: RLMObject
+        parameters:
+            accessorClass:
+                type: 'Class<?>'
