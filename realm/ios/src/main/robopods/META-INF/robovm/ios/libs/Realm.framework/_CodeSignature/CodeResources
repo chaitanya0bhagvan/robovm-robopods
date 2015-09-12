@@ -74,7 +74,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		351NhcrYMusAQBP8fHNbwWOrf4Y=
+		7GVtdYsNA2OZKC6N6zocU/R+v6s=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -131,6 +131,10 @@
 		<key>PrivateHeaders/RLMSchema_Private.h</key>
 		<data>
 		ZGCsLXvDGeGiG1s0bVZ9oEXJqNg=
+		</data>
+		<key>strip-frameworks.sh</key>
+		<data>
+		yoFtYOltxi955+b1n7Zml9nNlkA=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -258,6 +262,10 @@
 		<key>PrivateHeaders/RLMSchema_Private.h</key>
 		<data>
 		ZGCsLXvDGeGiG1s0bVZ9oEXJqNg=
+		</data>
+		<key>strip-frameworks.sh</key>
+		<data>
+		yoFtYOltxi955+b1n7Zml9nNlkA=
 		</data>
 	</dict>
 	<key>rules</key>

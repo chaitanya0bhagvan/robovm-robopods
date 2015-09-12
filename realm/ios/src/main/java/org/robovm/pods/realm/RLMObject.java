@@ -42,7 +42,9 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(RLMObject.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public RLMObject() {}
+    public RLMObject() {
+        init();
+    }
     protected RLMObject(SkipInit skipInit) { super(skipInit); }
     public RLMObject(NSObject value) { super((SkipInit) null); initObject(initWithValue(value)); }
     /*</constructors>*/
@@ -54,12 +56,15 @@ import org.robovm.apple.foundation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+
+    @Method(selector = "init")
+    protected native @Pointer long init();
     @Method(selector = "initWithValue:")
     protected native @Pointer long initWithValue(NSObject value);
     @Method(selector = "linkingObjectsOfClass:forProperty:")
     public native NSArray<?> linkingObjectsOfClass$forProperty$(String className, String property);
     @Method(selector = "isEqualToObject:")
-    public native boolean isEqualToObject$(RLMObject object);
+    public native boolean isEqualToObject(RLMObject object);
     @Method(selector = "objectForKeyedSubscript:")
     public native long objectForKeyedSubscript(String key);
     @Method(selector = "setObject:forKeyedSubscript:")
@@ -67,42 +72,42 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "className")
     public static native String getClassName();
     @Method(selector = "createInDefaultRealmWithValue:")
-    public static native RLMObject createInDefaultRealmWithValue$(NSObject value);
+    public static native RLMObject createInDefaultRealmWithValue(NSObject value);
     @Method(selector = "createInDefaultRealmWithObject:")
-    public static native RLMObject createInDefaultRealmWithObject$(NSObject object);
+    public static native RLMObject createInDefaultRealmWithObject(NSObject object);
     @Method(selector = "createInRealm:withValue:")
-    public static native RLMObject createInRealm$withValue$(NSObject realm, NSObject value);
+    public static native RLMObject createInRealmWithValue(NSObject realm, NSObject value);
     @Method(selector = "createInRealm:withObject:")
-    public static native RLMObject createInRealm$withObject$(NSObject realm, NSObject object);
+    public static native RLMObject createInRealmWithObject(NSObject realm, NSObject object);
     @Method(selector = "createOrUpdateInDefaultRealmWithValue:")
-    public static native RLMObject createOrUpdateInDefaultRealmWithValue$(NSObject value);
+    public static native RLMObject createOrUpdateInDefaultRealmWithValue(NSObject value);
     @Method(selector = "createOrUpdateInDefaultRealmWithObject:")
-    public static native RLMObject createOrUpdateInDefaultRealmWithObject$(NSObject object);
+    public static native RLMObject createOrUpdateInDefaultRealmWithObject(NSObject object);
     @Method(selector = "createOrUpdateInRealm:withValue:")
-    public static native RLMObject createOrUpdateInRealm$withValue$(NSObject realm, NSObject value);
+    public static native RLMObject createOrUpdateInRealmWithValue(NSObject realm, NSObject value);
     @Method(selector = "createOrUpdateInRealm:withObject:")
-    public static native RLMObject createOrUpdateInRealm$withObject$(NSObject realm, NSObject object);
+    public static native RLMObject createOrUpdateInRealmWithObject(NSObject realm, NSObject object);
     @Method(selector = "indexedProperties")
     public static native NSArray<?> indexedProperties();
     @Method(selector = "defaultPropertyValues")
-    public static native NSDictionary<?, ?> getDefaultPropertyValues();
+    public static native NSDictionary<?, ?> defaultPropertyValues();
     @Method(selector = "primaryKey")
-    public static native NSString getPrimaryKey();
+    public static native NSString primaryKey();
     @Method(selector = "ignoredProperties")
-    public static native NSArray getIgnoredProperties();
+    public static native NSArray<?> getIgnoredProperties();
     @Method(selector = "requiredProperties")
     public static native NSArray<?> requiredProperties();
     @Method(selector = "allObjects")
     public static native RLMResults allObjects();
     @Method(selector = "objectsWithPredicate:")
-    public static native RLMResults objectsWithPredicate$(NSPredicate predicate);
+    public static native RLMResults objectsWithPredicate(NSPredicate predicate);
     @Method(selector = "objectForPrimaryKey:")
-    public static native RLMObject objectForPrimaryKey$(long primaryKey);
+    public static native RLMObject objectForPrimaryKey(long primaryKey);
     @Method(selector = "allObjectsInRealm:")
-    public static native RLMResults allObjectsInRealm$(NSObject realm);
+    public static native RLMResults allObjectsInRealm(NSObject realm);
     @Method(selector = "objectsInRealm:withPredicate:")
-    public static native RLMResults objectsInRealm$withPredicate$(RLMRealm realm, NSPredicate predicate);
+    public static native RLMResults objectsInRealm(RLMRealm realm, NSPredicate predicate);
     @Method(selector = "objectInRealm:forPrimaryKey:")
-    public static native RLMObject objectInRealm$forPrimaryKey$(RLMRealm realm, long primaryKey);
+    public static native RLMObject objectInRealm(RLMRealm realm, long primaryKey);
     /*</methods>*/
 }

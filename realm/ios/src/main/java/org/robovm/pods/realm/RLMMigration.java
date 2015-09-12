@@ -56,12 +56,12 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "enumerateObjects:block:")
     public native void enumerateObjects(String className, @Block RLMObjectMigrationCallback block);
     @Method(selector = "createObject:withValue:")
-    public native RLMObject createObject$withValue$(String className, NSObject value);
+    public native RLMObject createObjectWithValue(String className, NSObject value);
     @Method(selector = "createObject:withObject:")
-    public native RLMObject createObject$withObject$(String className, NSObject object);
+    public native RLMObject createObjectWithObject(String className, NSObject object);
     @Method(selector = "deleteObject:")
-    public native void deleteObject$(RLMObject object);
+    public native void deleteObject(RLMObject object);
     @Method(selector = "deleteDataForClassName:")
-    public native boolean deleteDataForClassName$(String name);
+    public native boolean deleteDataForClassName(String name);
     /*</methods>*/
 }

@@ -62,9 +62,9 @@ import org.robovm.apple.foundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "addNotificationBlock:")
-    public native NSObject addNotificationBlock$(@Block RLMNotificationCallback block);
+    public native RLMNotificationToken addNotificationBlock(@Block RLMNotificationCallback block);
     @Method(selector = "removeNotification:")
-    public native void removeNotification$(NSObject notificationToken);
+    public native void removeNotification(RLMNotificationToken notificationToken);
     @Method(selector = "beginWriteTransaction")
     public native void beginWriteTransaction();
     @Method(selector = "commitWriteTransaction")
@@ -72,27 +72,27 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "cancelWriteTransaction")
     public native void cancelWriteTransaction();
     @Method(selector = "transactionWithBlock:")
-    public native void transactionWithBlock$(@Block Runnable block);
+    public native void transactionWithBlock(@Block Runnable block);
     @Method(selector = "refresh")
     public native boolean refresh();
     @Method(selector = "writeCopyToPath:error:")
-    public native boolean writeCopyToPath$error$(String path, NSError.NSErrorPtr error);
+    public native boolean writeCopyToPath(String path, NSError.NSErrorPtr error);
     @Method(selector = "writeCopyToPath:encryptionKey:error:")
-    public native boolean writeCopyToPath$encryptionKey$error$(String path, NSData key, NSError.NSErrorPtr error);
+    public native boolean writeCopyToPath(String path, NSData key, NSError.NSErrorPtr error);
     @Method(selector = "invalidate")
     public native void invalidate();
     @Method(selector = "addObject:")
-    public native void addObject$(RLMObject object);
+    public native void addObject(RLMObject object);
     @Method(selector = "addObjects:")
-    public native void addObjects$(NSFastEnumeration array);
+    public native void addObjects(NSArray<?> array);
     @Method(selector = "addOrUpdateObject:")
-    public native void addOrUpdateObject$(RLMObject object);
+    public native void addOrUpdateObject(RLMObject object);
     @Method(selector = "addOrUpdateObjectsFromArray:")
-    public native void addOrUpdateObjectsFromArray$(NSObject array);
+    public native void addOrUpdateObjectsFromArray(NSObject array);
     @Method(selector = "deleteObject:")
-    public native void deleteObject$(RLMObject object);
+    public native void deleteObject(RLMObject object);
     @Method(selector = "deleteObjects:")
-    public native void deleteObjects$(NSObject array);
+    public native void deleteObjects(NSObject array);
     @Method(selector = "deleteAllObjects")
     public native void deleteAllObjects();
     @Method(selector = "defaultRealm")
@@ -108,24 +108,24 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "setEncryptionKey:forRealmsAtPath:")
     public static native void setEncryptionKey(NSData key, NSString path);
     @Method(selector = "inMemoryRealmWithIdentifier:")
-    public static native RLMRealm inMemoryRealmWithIdentifier$(String identifier);
+    public static native RLMRealm inMemoryRealm(String identifier);
     @Method(selector = "defaultRealmPath")
     public static native String getDefaultRealmPath();
     @Method(selector = "setDefaultRealmPath:")
     public static native void setDefaultRealmPath(String defaultRealmPath);
     @Method(selector = "setDefaultRealmSchemaVersion:withMigrationBlock:")
-    public static native void setDefaultRealmSchemaVersion(long version, RLMMigrationCallback block);
+    public static native void setDefaultRealmSchemaVersion(long version, @Block RLMMigrationCallback block);
     @Method(selector = "setSchemaVersion:forRealmAtPath:withMigrationBlock:")
-    public static native void setSchemaVersion(long version, NSString realmPath, RLMMigrationCallback block);
+    public static native void setSchemaVersion(long version, NSString realmPath, @Block RLMMigrationCallback block);
     @Method(selector = "schemaVersionAtPath:error:")
-    public static native long schemaVersionAtPath$error$(String realmPath, NSError.NSErrorPtr error);
+    public static native long schemaVersionAtPath(String realmPath, NSError.NSErrorPtr error);
     @Method(selector = "schemaVersionAtPath:encryptionKey:error:")
     public static native long schemaVersionAtPath(NSString realmPath, NSData key, NSError.NSErrorPtr error);
     @Method(selector = "migrateRealm:")
-    public static native NSError migrateRealm$(NSObject configuration);
+    public static native NSError migrateRealm(NSObject configuration);
     @Method(selector = "migrateRealmAtPath:")
-    public static native NSError migrateRealmAtPath$(String realmPath);
+    public static native NSError migrateRealmAtPath(String realmPath);
     @Method(selector = "migrateRealmAtPath:encryptionKey:")
-    public static native NSError migrateRealmAtPath$encryptionKey$(String realmPath, NSData key);
+    public static native NSError migrateRealmAtPath(String realmPath, NSData key);
     /*</methods>*/
 }

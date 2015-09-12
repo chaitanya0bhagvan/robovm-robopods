@@ -71,15 +71,15 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "sortedResultsUsingDescriptors:")
     public native RLMResults<T> sortedResultsUsingDescriptors(List<RLMSortDescriptor> properties);
     @Method(selector = "minOfProperty:")
-    public native long minOfProperty$(String property);
+    public native long minOfProperty(String property);
     @Method(selector = "maxOfProperty:")
-    public native long maxOfProperty$(String property);
+    public native long maxOfProperty(String property);
     @Method(selector = "sumOfProperty:")
-    public native NSNumber sumOfProperty$(String property);
+    public native NSNumber sumOfProperty(String property);
     @Method(selector = "averageOfProperty:")
-    public native NSNumber averageOfProperty$(String property);
+    public native NSNumber averageOfProperty(String property);
     @Method(selector = "objectAtIndexedSubscript:")
-    public native NSObject objectAtIndexedSubscript$(@MachineSizedUInt long index);
+    public native T objectAtIndexedSubscript(long index);
     @Method(selector = "valueForKey:")
     public native long valueForKey(String key);
     @Method(selector = "setValue:forKey:")

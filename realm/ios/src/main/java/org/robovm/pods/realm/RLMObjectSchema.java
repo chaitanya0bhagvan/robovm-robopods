@@ -58,6 +58,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "objectForKeyedSubscript:")
     public native RLMProperty objectForKeyedSubscript(NSString propertyName);
     @Method(selector = "isEqualToObjectSchema:")
-    public native boolean isEqualToObjectSchema$(RLMObjectSchema objectSchema);
+    public native boolean isEqualToObjectSchema(RLMObjectSchema objectSchema);
     /*</methods>*/
 }

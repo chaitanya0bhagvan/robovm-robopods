@@ -70,7 +70,7 @@ import org.robovm.apple.foundation.*;
     @NotImplemented("sortedResultsUsingDescriptors:")
     public RLMResults<T> sortedResultsUsingDescriptors(List<RLMSortDescriptor> properties) { return null; }
     @NotImplemented("objectAtIndexedSubscript:")
-    public NSObject objectAtIndexedSubscript$(@MachineSizedUInt long index) { return null; }
+    public T objectAtIndexedSubscript(long index) { return null; }
     @NotImplemented("valueForKey:")
     public long valueForKey(String key) { return 0; }
     @NotImplemented("setValue:forKey:")

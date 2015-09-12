@@ -43,7 +43,6 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     protected RLMArray(SkipInit skipInit) { super(skipInit); }
-    public RLMArray(String objectClassName) { super((SkipInit) null); initObject(initWithObjectClassName$(objectClassName)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "objectClassName")
@@ -68,7 +67,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "addObjects:")
     public native void addObjects(NSArray<T> objects);
     @Method(selector = "insertObject:atIndex:")
-    public native void insertObject$atIndex$(NSObject anObject, @MachineSizedUInt long index);
+    public native void insertObject(T anObject, long index);
     @Method(selector = "removeObjectAtIndex:")
     public native void removeObjectAtIndex(long index);
     @Method(selector = "removeLastObject")
@@ -80,7 +79,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "moveObjectAtIndex:toIndex:")
     public native void moveObjectAtIndex(long sourceIndex, long destinationIndex);
     @Method(selector = "exchangeObjectAtIndex:withObjectAtIndex:")
-    public native void exchangeObjectAtIndex$withObjectAtIndex$(@MachineSizedUInt long index1, @MachineSizedUInt long index2);
+    public native void exchangeObjectAtIndex(long index1, long index2);
     @Method(selector = "indexOfObject:")
     public native long indexOfObject(T object);
     @Method(selector = "indexOfObjectWithPredicate:")
@@ -92,11 +91,9 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "sortedResultsUsingDescriptors:")
     public native RLMResults<T> sortedResultsUsingDescriptors(List<RLMSortDescriptor> properties);
     @Method(selector = "objectAtIndexedSubscript:")
-    public native NSObject objectAtIndexedSubscript$(@MachineSizedUInt long index);
+    public native T objectAtIndexedSubscript(long index);
     @Method(selector = "setObject:atIndexedSubscript:")
-    public native void setObject(T newValue, long index);
-    @Method(selector = "initWithObjectClassName:")
-    protected native @Pointer long initWithObjectClassName$(String objectClassName);
+    public native void setObject(T newValue, @MachineSizedUInt long index);
     @Method(selector = "valueForKey:")
     public native long valueForKey(String key);
     @Method(selector = "setValue:forKey:")

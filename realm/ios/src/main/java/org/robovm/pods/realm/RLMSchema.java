@@ -34,8 +34,8 @@ import org.robovm.apple.foundation.*;
 
 /*</javadoc>*/
 /*<annotations>*/@Library(Library.INTERNAL) @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/RLMSchema/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/RLMSchema/*</name>*/
+    extends /*<extends>*/NSObject/*</extends>*/
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class RLMSchemaPtr extends Ptr<RLMSchema, RLMSchemaPtr> {}/*</ptr>*/
@@ -56,6 +56,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "objectForKeyedSubscript:")
     public native RLMObjectSchema objectForKeyedSubscript(long className);
     @Method(selector = "isEqualToSchema:")
-    public native boolean isEqualToSchema$(RLMSchema schema);
+    public native boolean isEqualToSchema(RLMSchema schema);
     /*</methods>*/
 }

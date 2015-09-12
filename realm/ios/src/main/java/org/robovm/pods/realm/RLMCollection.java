@@ -68,7 +68,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "sortedResultsUsingDescriptors:")
     RLMResults<T> sortedResultsUsingDescriptors(List<RLMSortDescriptor> properties);
     @Method(selector = "objectAtIndexedSubscript:")
-    NSObject objectAtIndexedSubscript$(@MachineSizedUInt long index);
+    T objectAtIndexedSubscript(long index);
     @Method(selector = "valueForKey:")
     long valueForKey(String key);
     @Method(selector = "setValue:forKey:")
