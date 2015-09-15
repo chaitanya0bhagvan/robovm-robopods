@@ -35,7 +35,7 @@ import org.robovm.apple.foundation.*;
 /*</javadoc>*/
 /*<annotations>*/@Library(Library.INTERNAL) @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/RLMObject/*</name>*/ 
-    extends /*<extends>*/RLMObjectBase/*</extends>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class RLMObjectPtr extends Ptr<RLMObject, RLMObjectPtr> {}/*</ptr>*/
@@ -43,7 +43,9 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public RLMObject() {
-        init();
+//        super();
+        System.out.println("RLMObject constructor");
+//        init();
     }
     protected RLMObject(SkipInit skipInit) { super(skipInit); }
     public RLMObject(NSObject value) { super((SkipInit) null); initObject(initWithValue(value)); }
