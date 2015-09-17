@@ -35,18 +35,14 @@ import org.robovm.apple.foundation.*;
 /*</javadoc>*/
 /*<annotations>*/@Library(Library.INTERNAL) @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/RLMObject/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/
+    extends /*<extends>*/RLMObjectBase/*</extends>*/
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class RLMObjectPtr extends Ptr<RLMObject, RLMObjectPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(RLMObject.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public RLMObject() {
-//        super();
-        System.out.println("RLMObject constructor");
-//        init();
-    }
+    public RLMObject() {}
     protected RLMObject(SkipInit skipInit) { super(skipInit); }
     public RLMObject(NSObject value) { super((SkipInit) null); initObject(initWithValue(value)); }
     /*</constructors>*/
@@ -58,9 +54,6 @@ import org.robovm.apple.foundation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-
-    @Method(selector = "init")
-    protected native @Pointer long init();
     @Method(selector = "initWithValue:")
     protected native @Pointer long initWithValue(NSObject value);
     @Method(selector = "linkingObjectsOfClass:forProperty:")
@@ -68,9 +61,9 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "isEqualToObject:")
     public native boolean isEqualToObject(RLMObject object);
     @Method(selector = "objectForKeyedSubscript:")
-    public native long objectForKeyedSubscript(String key);
+    public native NSObject objectForKeyedSubscript(String key);
     @Method(selector = "setObject:forKeyedSubscript:")
-    public native void setObject(long obj, NSString key);
+    public native void setObject(NSObject obj, String key);
     @Method(selector = "className")
     public static native String getClassName();
     @Method(selector = "createInDefaultRealmWithValue:")
@@ -92,11 +85,11 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "indexedProperties")
     public static native NSArray<?> indexedProperties();
     @Method(selector = "defaultPropertyValues")
-    public static native NSDictionary<?, ?> defaultPropertyValues();
+    public static native NSDictionary<NSString, ?> defaultPropertyValues();
     @Method(selector = "primaryKey")
     public static native NSString primaryKey();
     @Method(selector = "ignoredProperties")
-    public static native NSArray<?> getIgnoredProperties();
+    public static native NSArray<NSString> getIgnoredProperties();
     @Method(selector = "requiredProperties")
     public static native NSArray<?> requiredProperties();
     @Method(selector = "allObjects")
@@ -104,12 +97,12 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "objectsWithPredicate:")
     public static native RLMResults objectsWithPredicate(NSPredicate predicate);
     @Method(selector = "objectForPrimaryKey:")
-    public static native RLMObject objectForPrimaryKey(long primaryKey);
+    public static native RLMObject objectForPrimaryKey(NSObject primaryKey);
     @Method(selector = "allObjectsInRealm:")
     public static native RLMResults allObjectsInRealm(NSObject realm);
     @Method(selector = "objectsInRealm:withPredicate:")
     public static native RLMResults objectsInRealm(RLMRealm realm, NSPredicate predicate);
     @Method(selector = "objectInRealm:forPrimaryKey:")
-    public static native RLMObject objectInRealm(RLMRealm realm, long primaryKey);
+    public static native RLMObject objectInRealm(RLMRealm realm, NSObject primaryKey);
     /*</methods>*/
 }

@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<properties>*/
     @Property(selector = "count")
-    long getCount();
+    @MachineSizedUInt long getCount();
     @Property(selector = "objectClassName")
     String getObjectClassName();
     @Property(selector = "realm")
@@ -52,27 +52,27 @@ import org.robovm.apple.foundation.*;
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "objectAtIndex:")
-    T objectAtIndex(long index);
+    T objectAtIndex(@MachineSizedUInt long index);
     @Method(selector = "firstObject")
     T firstObject();
     @Method(selector = "lastObject")
     T lastObject();
     @Method(selector = "indexOfObject:")
-    long indexOfObject(T object);
+    @MachineSizedUInt long indexOfObject(T object);
     @Method(selector = "indexOfObjectWithPredicate:")
-    long indexOfObjectWithPredicate(NSPredicate predicate);
+    @MachineSizedUInt long indexOfObjectWithPredicate(NSPredicate predicate);
     @Method(selector = "objectsWithPredicate:")
     RLMResults<T> objectsWithPredicate(NSPredicate predicate);
     @Method(selector = "sortedResultsUsingProperty:ascending:")
-    RLMResults<T> sortedResultsUsingProperty(NSString property, boolean ascending);
+    RLMResults<T> sortedResultsUsingProperty(String property, boolean ascending);
     @Method(selector = "sortedResultsUsingDescriptors:")
-    RLMResults<T> sortedResultsUsingDescriptors(List<RLMSortDescriptor> properties);
+    RLMResults<T> sortedResultsUsingDescriptors(NSArray<RLMSortDescriptor> properties);
     @Method(selector = "objectAtIndexedSubscript:")
-    T objectAtIndexedSubscript(long index);
+    NSObject objectAtIndexedSubscript(@MachineSizedUInt long index);
     @Method(selector = "valueForKey:")
-    long valueForKey(String key);
+    NSObject valueForKey(String key);
     @Method(selector = "setValue:forKey:")
-    void setValue(T value, NSString key);
+    void setValue(NSObject value, NSString key);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

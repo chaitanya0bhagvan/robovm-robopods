@@ -54,7 +54,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "schemaForClassName:")
     public native RLMObjectSchema schemaForClassName(String className);
     @Method(selector = "objectForKeyedSubscript:")
-    public native RLMObjectSchema objectForKeyedSubscript(long className);
+    public native RLMObjectSchema objectForKeyedSubscript(NSObject className);
     @Method(selector = "isEqualToSchema:")
     public native boolean isEqualToSchema(RLMSchema schema);
     /*</methods>*/

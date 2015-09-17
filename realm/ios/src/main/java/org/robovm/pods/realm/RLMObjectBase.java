@@ -52,7 +52,7 @@ import org.robovm.apple.foundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "className")
-    public static native String getClassName();
+    public static native String className();
     @Method(selector = "shouldIncludeInDefaultSchema")
     public static native boolean shouldIncludeInDefaultSchema();
     /*</methods>*/

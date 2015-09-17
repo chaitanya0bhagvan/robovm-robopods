@@ -49,7 +49,7 @@ import org.robovm.apple.foundation.*;
     @Property(selector = "name")
     public native String getName();
     @Property(selector = "type")
-    public native RLMPropertyType getType();
+    public native int getType();
     @Property(selector = "indexed")
     public native boolean isIndexed();
     @Property(selector = "objectClassName")

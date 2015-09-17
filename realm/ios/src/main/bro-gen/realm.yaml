@@ -10,6 +10,8 @@ clang_args: ['-x', 'objective-c']
 header_root: '/../robopods/META-INF/robovm/ios/libs/'
 
 headers:
+    - Realm.framework/Headers/RLMRealmConfiguration.h
+    - Realm.framework/Headers/RLMProperty.h
     - Realm.framework/Headers/Realm.h
 
 typedefs:
@@ -33,8 +35,8 @@ classes:
         properties:
             'realm':
                 type: RLMRealm
-            'count':
-                type: long
+            # 'count':
+                # type: long
         methods:
             '+new':
                 exclude: true
@@ -56,13 +58,13 @@ classes:
                 parameters:
                     anObject:
                         type: T
-                    index:
-                        type: long
+                    # index:
+                        # type: long
             '-removeObjectAtIndex:':
                 trim_after_first_colon: true
-                parameters:
-                    index:
-                        type: long
+                # parameters:
+                    # index:
+                        # type: long
             '-removeLastObject':
                 trim_after_first_colon: true
             '-removeAllObjects':
@@ -70,37 +72,37 @@ classes:
             '-replaceObjectAtIndex:withObject:':
                 trim_after_first_colon: true
                 parameters:
-                    index: 
-                        type: long
+                    # index: 
+                        # type: long
                     anObject:
                         type: T
             '-moveObjectAtIndex:toIndex:':
                 trim_after_first_colon: true
-                parameters:
-                    sourceIndex:
-                        type: long
-                    destinationIndex:
-                        type: long
+                # parameters:
+                #     sourceIndex:
+                #         type: long
+                #     destinationIndex:
+                #         type: long
             '-exchangeObjectAtIndex:withObjectAtIndex:':
                 trim_after_first_colon: true
-                parameters:
-                    index1:
-                        type: long
-                    index2:
-                        type: long
+                # parameters:
+                #     index1:
+                #         type: long
+                #     index2:
+                #         type: long
             '-setObject:atIndexedSubscript:':
                 trim_after_first_colon: true
                 parameters:
                     newValue:
                         type: T
-                    index:
-                        type: long
+                    # index:
+                    #     type: long
             '-objectAtIndex:':
                 trim_after_first_colon: true
                 return_type: T
-                parameters:
-                    index:
-                        type: long
+                # parameters:
+                    # index:
+                        # type: long
             '-firstObject':
                 return_type: T
             '-lastObject':
@@ -110,41 +112,41 @@ classes:
                 parameters:
                     object:
                         type: T
-                return_type: long
+                # return_type: long
             '-indexOfObjectWithPredicate:':
-                return_type: long
+                # return_type: long
                 trim_after_first_colon: true
-                parameters:
-                    predicate:
-                        type: NSPredicate
+                # parameters:
+                #     predicate:
+                #         type: NSPredicate
             '-objectsWithPredicate:':
                 return_type: RLMResults<T>
                 trim_after_first_colon: true
-                parameters:
-                    predicate:
-                        type: NSPredicate
+                # parameters:
+                #     predicate:
+                #         type: NSPredicate
             '-sortedResultsUsingProperty:ascending:':
                 return_type: RLMResults<T>
                 trim_after_first_colon: true
-                parameters:
-                    property:
-                        type:
-                            NSString
-                    ascending: 
-                        type:
-                            boolean
+                # parameters:
+                #     property:
+                #         type:
+                #             NSString
+                #     ascending: 
+                #         type:
+                #             boolean
             '-sortedResultsUsingDescriptors:':
                 trim_after_first_colon: true
                 return_type: RLMResults<T>
                 parameters:
                     properties:
-                        type: List<RLMSortDescriptor>
+                        type: NSArray<RLMSortDescriptor>
             '-objectAtIndexedSubscript:':
                 return_type: T
                 trim_after_first_colon: true
-                parameters:
-                    index:
-                        type: long
+                # parameters:
+                #     index:
+                #         type: long
             '-setObject:atIndexedSubscript:':
                 trim_after_first_colon: true
                 parameters:
@@ -152,21 +154,21 @@ classes:
                         type: T
             '-valueForKey:':
                 trim_after_first_colon: true
-                return_type: long
+                # return_type: long
             '-setValue:forKey:':
                 trim_after_first_colon: true
                 parameters:
                     value:
                         type: T
-                    key:
-                        type: NSString
+                    # key:
+                    #     type: NSString
             '-initWithObjectClassName:':
                 exclude: true
 
-    RLMObjectBase:
-        methods: 
-            '+className':
-                property: true
+    RLMObjectBase: {}
+        # methods: 
+        #     '+className':
+        #         property: true
     RLMObject: # DONE
         extends: RLMObjectBase
         properties:
@@ -176,13 +178,13 @@ classes:
                 exclude: true
         methods:
             '+defaultPropertyValues':
-                return_type: NSDictionary<?, ?>
+                return_type: NSDictionary<NSString, ?>
             '+primaryKey':
                 return_type: NSString
             '+ignoredProperties':
-                return_type: NSArray<?>
-            '-init':
-                trim_after_first_colon: true
+                return_type: NSArray<NSString>
+            # '-init':
+                # trim_after_first_colon: true
             '-initWithValue:':
                 trim_after_first_colon: true
             '-initWithObject:':
@@ -205,7 +207,7 @@ classes:
                 name: createOrUpdateInRealmWithObject
             '+ignoredProperties':
                 property: true
-                return_type: NSArray<?>
+                return_type: NSArray<NSString>
             '-isDeletedFromRealm':
                 exclude: true
             '+className':
@@ -220,8 +222,7 @@ classes:
                 return_type: RLMObject
                 parameters:
                     primaryKey:
-                        type: long
-#This cannot be long
+                        type: NSObject
             '+allObjectsInRealm:':
                 trim_after_first_colon: true
             '+objectsInRealm:withPredicate:':
@@ -238,21 +239,21 @@ classes:
                     realm: 
                         type: RLMRealm
                     primaryKey:
-                        type: long
+                        type: NSObject
             '-linkingObjectsOfClass:':
                 trim_after_first_colon: true
             '-isEqualToObject:':
                 trim_after_first_colon: true
             '-objectForKeyedSubscript:':
                 trim_after_first_colon: true
-                return_type: long
+                return_type: NSObject
             '-setObject:forKeyedSubscript:':
                 trim_after_first_colon: true
                 parameters: 
                     obj: 
-                        type: long
-                    key:
-                        type: NSString
+                        type: NSObject
+                    # key:
+                        # type: NSString
             # '-initWithValue:':
             #     trim_after_first_colon: true
             # '-initWithObject:':
@@ -271,15 +272,15 @@ classes:
                 return_type: RLMRealm
             '+realmWithPath:.*':
                 trim_after_first_colon: true
-                name: realmWithPath
+                # name: realmWithPath
                 return_type: RLMRealm
             '+setEncryptionKey:forRealmsAtPath:':
                 trim_after_first_colon: true
                 parameters:
                     key: 
                         type: NSData
-                    path: 
-                        type: NSString
+                    # path: 
+                        # type: NSString
             '+inMemoryRealmWithIdentifier:':
                 trim_after_first_colon: true
                 name: inMemoryRealm
@@ -305,7 +306,7 @@ classes:
                 trim_after_first_colon: true
                 parameters:
                     array:
-                        type: NSArray<?>
+                        type: NSArray<RLMObject>
 #Add objects of RLMResults
             '-addOrUpdateObject.*':
                 trim_after_first_colon: true
@@ -314,24 +315,24 @@ classes:
             '+schemaVersionAtPath:encryptionKey:error:':
                 trim_after_first_colon: true
                 parameters:
-                    realmPath: 
-                        type: NSString
+                    # realmPath: 
+                        # type: NSString
                     key: 
                         type: NSData
             '+setDefaultRealmSchemaVersion:withMigrationBlock:':
                 trim_after_first_colon: true
                 parameters:
-                    version: 
-                        type: long
+                    # version: 
+                        # type: long
                     block:
                         type: '@Block RLMMigrationCallback'
             '+setSchemaVersion:forRealmAtPath:withMigrationBlock:':
                 trim_after_first_colon: true
                 parameters:
-                    version: 
-                        type: long
-                    realmPath:
-                        type: NSString
+                    # version: 
+                    #     type: long
+                    # realmPath:
+                    #     type: NSString
                     block:
                         type: '@Block RLMMigrationCallback'
             '+schemaVersionAtPath:error:':
@@ -339,8 +340,8 @@ classes:
             '+schemaVersionAtPath:encryptionKey:error:':
                 trim_after_first_colon: true
                 parameters:
-                    realmPath: 
-                        type: NSString
+                    # realmPath: 
+                    #     type: NSString
                     key: 
                         type: NSData
             '+migrateRealm.*':
@@ -352,17 +353,17 @@ classes:
             [RLMCollection, NSFastEnumeration]
         skip_def_constructor: true
         properties:
-            realm:
-                type: RLMRealm
-            'count':
-                type: long
+            # 'realm':
+            #     type: RLMRealm
+            # 'count':
+            #     type: long
         methods:
             '-minOfProperty:':
                 trim_after_first_colon: true
-                return_type: long
+                return_type: NSObject
             '-maxOfProperty:':
                 trim_after_first_colon: true
-                return_type: long
+                return_type: NSObject
             '-averageOfProperty:':
                 trim_after_first_colon: true
                 return_type: NSNumber
@@ -375,9 +376,9 @@ classes:
             '-objectAtIndex:':
                 trim_after_first_colon: true
                 return_type: T
-                parameters:
-                    index:
-                        type: long
+                # parameters:
+                #     index:
+                #         type: long
             '-firstObject':
                 return_type: T
             '-lastObject':
@@ -387,12 +388,12 @@ classes:
                 parameters:
                     object:
                         type: T
-                return_type: long
+                # return_type: long
 
             # '-indexOfObject.*':
                 # trim_after_first_colon: true
             '-indexOfObjectWithPredicate:':
-                return_type: long
+                # return_type: long
                 trim_after_first_colon: true
                 parameters:
                     predicate:
@@ -400,43 +401,43 @@ classes:
             '-objectsWithPredicate:':
                 return_type: RLMResults<T>
                 trim_after_first_colon: true
-                parameters:
-                    predicate:
-                        type: NSPredicate
+                # parameters:
+                #     predicate:
+                #         type: NSPredicate
             '-sortedResultsUsingProperty:ascending:':
                 return_type: RLMResults<T>
                 trim_after_first_colon: true
-                parameters:
-                    property:
-                        type:
-                            NSString
-                    ascending: 
-                        type:
-                            boolean
+                # parameters:
+                #     property:
+                #         type:
+                #             NSString
+                #     ascending: 
+                #         type:
+                #             boolean
             '-sortedResultsUsingDescriptors:':
                 trim_after_first_colon: true
                 return_type: RLMResults<T>
                 parameters:
                     properties:
-                        type: List<RLMSortDescriptor>
+                        type: NSArray<RLMSortDescriptor>
             '-objectAtIndexedSubscript:':
-                return_type: T
+                # return_type: T
                 trim_after_first_colon: true
-                parameters:
-                    index:
-                        type: long
-            '-valueForKey:':
-                trim_after_first_colon: true
-                return_type: long
-            '-setValue:forKey:':
-                trim_after_first_colon: true
-                parameters:
-                    value:
-                        type: T
-                    key:
-                        type: NSString
+                # parameters:
+                #     index:
+                #         type: long
+            # '-valueForKey:':
+            #     trim_after_first_colon: true
+            #     return_type: long
+            # '-setValue:forKey:':
+            #     trim_after_first_colon: true
+            #     parameters:
+            #         value:
+            #             type: T
+            #         key:
+            #             type: NSString
     RLMObjectSchema: 
-        extends: NSObject
+        # extends: NSObject
         properties:
             'properties':
                 type:
@@ -449,11 +450,11 @@ classes:
                 return_type: RLMProperty
                 parameters:
                     propertyName:
-                        type: NSString
+                        type: NSObject
             '-isEqualToObjectSchema:':
                 trim_after_first_colon: true
     RLMMigration: 
-        extends: NSObject
+        # extends: NSObject
         methods:
             '-enumerateObjects:block:':
                 trim_after_first_colon: true
@@ -470,42 +471,42 @@ classes:
     RLMProperty: 
         extends: NSObject
         properties:
-            name:
-                type: String
-            type:
-                type: RLMPropertyType
-            indexed:
-                type: boolean
+            # name:
+            #     type: String
+            # type:
+            #     type: RLMPropertyType
+            # indexed:
+            #     type: boolean
             objectClassName:
                 type: String
-            optional:
-                type: boolean
+            # optional:
+            #     type: boolean
         methods:
             '-isEqualToProperty:':
                 trim_after_first_colon: true
-                return_type: boolean
-                parameters:
-                    property:
-                        type: RLMProperty
+                # return_type: boolean
+                # parameters:
+                #     property:
+                #         type: RLMProperty
     RLMRealmConfiguration:
-        extends: NSObject
-        protocols: [NSCopying]
+        # extends: NSObject
+        # protocols: [NSCopying]
         properties:
             'path':
-                exclude: true
+                type: String
             'inMemoryIdentifier':
-                exclude: true
+                type: String
             'encryptionKey':
-                exclude: true
+                type: NSData
             'migrationBlock':
-                exclude: true
+                type: '@Block RLMMigrationCallback'
             'objectClasses':
-                exclude: true
+                type: NSArray<?>
         methods:
-            '+defaultConfiguration':
-                property: true
+            '+setDefaultConfiguration:':
+                trim_after_first_colon: true
     RLMSchema: 
-        extends: NSObject
+        # extends: NSObject
         methods:
             '-schemaForClassName:':
                 trim_after_first_colon: true
@@ -514,7 +515,7 @@ classes:
                 trim_after_first_colon: true
                 parameters: 
                     className:
-                        type: long
+                        type: NSObject
             '-isEqualToSchema:':
                 trim_after_first_colon: true
     RLMSortDescriptor:
@@ -535,15 +536,15 @@ protocols:
         protocols:
             [NSFastEnumeration]
         properties:
-            'count':
-                type: long
+            # 'count':
+                # type: long
         methods:
             '-objectAtIndex:':
                 trim_after_first_colon: true
                 return_type: T
-                parameters:
-                    index:
-                        type: long
+                # parameters:
+                #     index:
+                #         type: long
             '-firstObject':
                 return_type: T
             '-lastObject':
@@ -553,49 +554,49 @@ protocols:
                 parameters:
                     object:
                         type: T
-                return_type: long
+                # return_type: long
             '-indexOfObjectWithPredicate:':
-                return_type: long
+                # return_type: long
                 trim_after_first_colon: true
-                parameters:
-                    predicate:
-                        type: NSPredicate
+                # parameters:
+                #     predicate:
+                #         type: NSPredicate
             '-objectsWithPredicate:':
                 return_type: RLMResults<T>
                 trim_after_first_colon: true
-                parameters:
-                    predicate:
-                        type: NSPredicate
+                # parameters:
+                #     predicate:
+                #         type: NSPredicate
             '-sortedResultsUsingProperty:ascending:':
                 return_type: RLMResults<T>
                 trim_after_first_colon: true
-                parameters:
-                    property:
-                        type:
-                            NSString
-                    ascending: 
-                        type:
-                            boolean
+                # parameters:
+                #     property:
+                #         type:
+                #             NSString
+                #     ascending: 
+                #         type:
+                #             boolean
             '-sortedResultsUsingDescriptors:':
                 trim_after_first_colon: true
                 return_type: RLMResults<T>
                 parameters:
                     properties:
-                        type: List<RLMSortDescriptor>
+                        type: NSArray<RLMSortDescriptor>
             '-objectAtIndexedSubscript:':
-                return_type: T
+                # return_type: T
                 trim_after_first_colon: true
-                parameters:
-                    index:
-                        type: long
+                # parameters:
+                #     index:
+                #         type: long
             '-valueForKey:':
                 trim_after_first_colon: true
-                return_type: long
+                return_type: NSObject
             '-setValue:forKey:':
                 trim_after_first_colon: true
                 parameters:
                     value:
-                        type: T
+                        type: NSObject
                     key:
                         type: NSString
 

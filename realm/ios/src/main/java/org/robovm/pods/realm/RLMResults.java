@@ -50,39 +50,39 @@ import org.robovm.apple.foundation.*;
     @Property(selector = "realm")
     public native RLMRealm getRealm();
     @Property(selector = "count")
-    public native long getCount();
+    public native @MachineSizedUInt long getCount();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "objectAtIndex:")
-    public native T objectAtIndex(long index);
+    public native T objectAtIndex(@MachineSizedUInt long index);
     @Method(selector = "firstObject")
     public native T firstObject();
     @Method(selector = "lastObject")
     public native T lastObject();
     @Method(selector = "indexOfObject:")
-    public native long indexOfObject(T object);
+    public native @MachineSizedUInt long indexOfObject(T object);
     @Method(selector = "indexOfObjectWithPredicate:")
-    public native long indexOfObjectWithPredicate(NSPredicate predicate);
+    public native @MachineSizedUInt long indexOfObjectWithPredicate(NSPredicate predicate);
     @Method(selector = "objectsWithPredicate:")
     public native RLMResults<T> objectsWithPredicate(NSPredicate predicate);
     @Method(selector = "sortedResultsUsingProperty:ascending:")
-    public native RLMResults<T> sortedResultsUsingProperty(NSString property, boolean ascending);
+    public native RLMResults<T> sortedResultsUsingProperty(String property, boolean ascending);
     @Method(selector = "sortedResultsUsingDescriptors:")
-    public native RLMResults<T> sortedResultsUsingDescriptors(List<RLMSortDescriptor> properties);
+    public native RLMResults<T> sortedResultsUsingDescriptors(NSArray<RLMSortDescriptor> properties);
     @Method(selector = "minOfProperty:")
-    public native long minOfProperty(String property);
+    public native NSObject minOfProperty(String property);
     @Method(selector = "maxOfProperty:")
-    public native long maxOfProperty(String property);
+    public native NSObject maxOfProperty(String property);
     @Method(selector = "sumOfProperty:")
     public native NSNumber sumOfProperty(String property);
     @Method(selector = "averageOfProperty:")
     public native NSNumber averageOfProperty(String property);
     @Method(selector = "objectAtIndexedSubscript:")
-    public native T objectAtIndexedSubscript(long index);
+    public native NSObject objectAtIndexedSubscript(@MachineSizedUInt long index);
     @Method(selector = "valueForKey:")
-    public native long valueForKey(String key);
+    public native NSObject valueForKey(String key);
     @Method(selector = "setValue:forKey:")
-    public native void setValue(T value, NSString key);
+    public native void setValue(NSObject value, NSString key);
     /*</methods>*/
 }

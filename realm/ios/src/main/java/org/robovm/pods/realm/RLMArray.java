@@ -52,12 +52,12 @@ import org.robovm.apple.foundation.*;
     @Property(selector = "isInvalidated")
     public native boolean isInvalidated();
     @Property(selector = "count")
-    public native long getCount();
+    public native @MachineSizedUInt long getCount();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "objectAtIndex:")
-    public native T objectAtIndex(long index);
+    public native T objectAtIndex(@MachineSizedUInt long index);
     @Method(selector = "firstObject")
     public native T firstObject();
     @Method(selector = "lastObject")
@@ -67,36 +67,36 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "addObjects:")
     public native void addObjects(NSArray<T> objects);
     @Method(selector = "insertObject:atIndex:")
-    public native void insertObject(T anObject, long index);
+    public native void insertObject(T anObject, @MachineSizedUInt long index);
     @Method(selector = "removeObjectAtIndex:")
-    public native void removeObjectAtIndex(long index);
+    public native void removeObjectAtIndex(@MachineSizedUInt long index);
     @Method(selector = "removeLastObject")
     public native void removeLastObject();
     @Method(selector = "removeAllObjects")
     public native void removeAllObjects();
     @Method(selector = "replaceObjectAtIndex:withObject:")
-    public native void replaceObjectAtIndex(long index, T anObject);
+    public native void replaceObjectAtIndex(@MachineSizedUInt long index, T anObject);
     @Method(selector = "moveObjectAtIndex:toIndex:")
-    public native void moveObjectAtIndex(long sourceIndex, long destinationIndex);
+    public native void moveObjectAtIndex(@MachineSizedUInt long sourceIndex, @MachineSizedUInt long destinationIndex);
     @Method(selector = "exchangeObjectAtIndex:withObjectAtIndex:")
-    public native void exchangeObjectAtIndex(long index1, long index2);
+    public native void exchangeObjectAtIndex(@MachineSizedUInt long index1, @MachineSizedUInt long index2);
     @Method(selector = "indexOfObject:")
-    public native long indexOfObject(T object);
+    public native @MachineSizedUInt long indexOfObject(T object);
     @Method(selector = "indexOfObjectWithPredicate:")
-    public native long indexOfObjectWithPredicate(NSPredicate predicate);
+    public native @MachineSizedUInt long indexOfObjectWithPredicate(NSPredicate predicate);
     @Method(selector = "objectsWithPredicate:")
     public native RLMResults<T> objectsWithPredicate(NSPredicate predicate);
     @Method(selector = "sortedResultsUsingProperty:ascending:")
-    public native RLMResults<T> sortedResultsUsingProperty(NSString property, boolean ascending);
+    public native RLMResults<T> sortedResultsUsingProperty(String property, boolean ascending);
     @Method(selector = "sortedResultsUsingDescriptors:")
-    public native RLMResults<T> sortedResultsUsingDescriptors(List<RLMSortDescriptor> properties);
+    public native RLMResults<T> sortedResultsUsingDescriptors(NSArray<RLMSortDescriptor> properties);
     @Method(selector = "objectAtIndexedSubscript:")
-    public native T objectAtIndexedSubscript(long index);
+    public native T objectAtIndexedSubscript(@MachineSizedUInt long index);
     @Method(selector = "setObject:atIndexedSubscript:")
     public native void setObject(T newValue, @MachineSizedUInt long index);
     @Method(selector = "valueForKey:")
-    public native long valueForKey(String key);
+    public native NSObject valueForKey(String key);
     @Method(selector = "setValue:forKey:")
-    public native void setValue(T value, NSString key);
+    public native void setValue(NSObject value, NSString key);
     /*</methods>*/
 }

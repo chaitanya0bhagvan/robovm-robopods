@@ -1,0 +1,254 @@
+package: org.robovm.pods.digitskit
+
+framework: DigitsKit
+
+include: 
+    - ../../../../../../robovm/cocoatouch/src/main/bro-gen/foundation.yaml
+    - ../../../../../../robovm/cocoatouch/src/main/bro-gen/uikit.yaml
+    - ../../../../../../robovm/cocoatouch/src/main/bro-gen/coregraphics.yaml
+    - ../../../../../../robovm/cocoatouch/src/main/bro-gen/coredata.yaml
+    - ../../../../../../robovm/cocoatouch/src/main/bro-gen/accounts.yaml
+
+clang_args: ['-x', 'objective-c']
+
+header_root: '/../robopods/META-INF/robovm/ios/libs/'
+
+headers:
+    - DigitsKit.framework/Headers/DigitsKit.h
+
+typedefs:
+    DGTAuthenticationCompletion: '@Block DGTAuthenticationCompletion'
+    DGTUploadContactsCompletion: '@Block DGTUploadContactsCompletion'
+    DGTLookupContactsCompletion: '@Block DGTLookupContactsCompletion'
+    DGTDeleteAllUploadedContactsCompletion: '@Block DGTDeleteAllUploadedContactsCompletion'
+
+enums:
+    DGTErrorCode: 
+        {prefix: DGTErrorCode, type: int}
+    DGTContactAccessAuthorizationStatus:
+        {prefix: DGTContactAccessAuthorizationStatus, type: long}
+classes:
+    Digits:
+        skip_def_constructor: true
+        skip_skip_init_constructor: true
+        properties:
+            'authConfig':
+                type: TWTRAuthConfig
+                readonly: true
+            'sessionUpdateDelegate':
+                type: DGTSessionUpdateDelegate
+        methods:
+            '+sharedInstance':
+                return_type: Digits
+            '-startWithConsumerKey:consumerSecret:':
+                trim_after_first_colon: true
+                parameters:
+                    consumerKey:
+                        type: String
+                    consumerSecret:
+                        type: String
+            '-startWithConsumerKey:consumerSecret:accessGroup:':
+                trim_after_first_colon: true
+                parameters:
+                    consumerKey:
+                        type: String
+                    consumerSecret:
+                        type: String
+                    accessGroup:
+                        type: String
+            '-session':
+                return_type: DGTSession
+            '-authenticateWithCompletion:':
+                trim_after_first_colon: true
+                parameters:
+                    completion:
+                        type: '@Block DGTAuthenticationCompletion'
+            '-authenticateWithTitle:completion:':
+                trim_after_first_colon: true
+                parameters:
+                    title:
+                        type: String
+                    completion:
+                        type: '@Block DGTAuthenticationCompletion'
+            '-authenticateWithViewController:title:completion:':
+                trim_after_first_colon: true
+                parameters:
+                    viewController:
+                        type: UIViewController
+                    title:
+                        type: String
+                    completion:
+                        type: '@Block DGTAuthenticationCompletion'
+            '-authenticateWithDigitsAppearance:viewController:title:completion:':
+                trim_after_first_colon: true
+                parameters:
+                    appearance:
+                        type: DGTAppearance
+                    viewController:
+                        type: UIViewController
+                    title:
+                        type: String
+                    completion:
+                        type: '@Block DGTAuthenticationCompletion'
+            '-authenticateWithPhoneNumber:digitsAppearance:viewController:title:completion:':
+                trim_after_first_colon: true
+                parameters:
+                    phoneNumber:
+                        type: String
+                    appearance:
+                        type: DGTAppearance
+                    viewController:
+                        type: UIViewController
+                    title:
+                        type: String
+                    completion:
+                        type: '@Block DGTAuthenticationCompletion'
+            '-authenticateWithNavigationViewController:phoneNumber:digitsAppearance:title:completionViewController:':
+                trim_after_first_colon: true
+                return_type: '<T extends UIViewController & DGTCompletionViewController> void'
+                parameters:
+                    navigationController:
+                        type: UINavigationController
+                    phoneNumber:
+                        type: String
+                    appearance:
+                        type: DGTAppearance
+                    title:
+                        type: String
+                    completionViewController:
+                        type: T
+            '-logOut':
+                trim_after_first_colon: true
+    DGTUser:
+        skip_skip_init_constructor: true
+        skip_def_constructor: true
+        properties: 
+            'userID':
+                type: String
+                readonly: true
+    DGTSession:
+        skip_def_constructor: true
+        protocols:
+            [TWTRAuthSession]
+        properties:
+            'authToken':
+                type: String
+                readonly: true
+            'authTokenSecret':
+                type: String
+                readonly: true
+            'userID':
+                type: String
+                readonly: true
+            'phoneNumber':
+                type: String
+                readonly: true
+        methods: 
+            '-initWithAuthToken:authTokenSecret:userID:phoneNumber:':
+                trim_after_first_colon: true
+                parameters:
+                    authToken:
+                        type: String
+                    authTokenSecret: 
+                        type: String
+                    userID:
+                        type: String
+                    phoneNumber:
+                        type: String
+    DGTOAuthSigning:
+        skip_skip_init_constructor: true
+        skip_def_constructor: true
+        protocols:
+            [TWTRCoreOAuthSigning]
+        methods:
+            '-init':
+                exclude: true
+            '-initWithAuthConfig:authSession:':
+                trim_after_first_colon: true
+                # return_type: DGTOAuthSigning
+                parameters:
+                    authConfig:
+                        type: TWTRAuthConfig
+                    authSession:
+                        type: DGTSession
+            '-OAuthEchoHeadersToVerifyCredentialsWithParams:':
+                trim_after_first_colon: true
+                return_type: NSDictionary<NSString, NSString>
+                parameters:
+                    params:
+                        type: NSDictionary<NSString, NSString>
+    DGTContactsUploadResult:
+        skip_skip_init_constructor: true
+        skip_def_constructor: true
+        properties:
+            'totalContacts':
+                type: long
+                readonly: true
+            'numberOfUploadedContacts':
+                type: long
+                readonly: true
+        methods:
+            '-init':
+                exclude: true
+    DGTContacts: 
+        skip_def_constructor: true
+        skip_skip_init_constructor: true
+        methods:
+            '-initWithUserSession:':
+                trim_after_first_colon: true
+            '-init':
+                exclude: true
+            '-startContactsUp.*':
+                trim_after_first_colon: true
+            '-lookupContactMatchesWithCursor:completion:':
+                trim_after_first_colon: true
+            '-deleteAllUploadedContactsWithCompletion:':
+                trim_after_first_colon: true
+    DGTAuthenticateButton:
+        methods:
+            '+buttonWithAuthenticationCompletion:':
+                trim_after_first_colon: true
+    DGTAppearance: 
+        skip_skip_init_constructor: true
+
+protocols:
+    DGTCompletionViewController:
+        methods:
+            '-digitsAuthenticationFinishedWithSession:error:':
+                trim_after_first_colon: true
+    DGTSessionUpdateDelegate:
+        methods:
+            '-digitsSessionHasChanged:':
+                trim_after_first_colon: true
+                parameters:
+                    newSession:
+                        type: DGTSession
+            '-digitsSessionExpiredForUserID:':
+                trim_after_first_colon: true
+                parameters:
+                    userID:
+                        type: String
+
+functions:
+    RLMDynamicValidatedSet:
+        class: RLMObject
+        name: dynamicValidatedSet
+        parameters:
+            obj:
+                type: 'RLMObjectBasePtr'
+            propName:
+                type: 'String'
+            val:
+                type: 'long'
+    RLMValidatedGetProperty:
+        class: RLMObject
+        name: getProperty
+    RLMDynamicGet:
+        class: RLMObject
+        name: get
+        return_type: 'long'
+    RLMReplaceSharedSchemaMethod:
+        class: RLMObject
+        parameters:
+            accessorClass:
+                type: 'Class<?>'

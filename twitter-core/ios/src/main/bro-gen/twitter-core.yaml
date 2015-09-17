@@ -1,0 +1,168 @@
+package: org.robovm.pods.realm
+
+framework: TwitterCore
+
+include: 
+    - ../../../../../../robovm/cocoatouch/src/main/bro-gen/foundation.yaml
+    - ../../../../../../robovm/cocoatouch/src/main/bro-gen/coredata.yaml
+    - ../../../../../../robovm/cocoatouch/src/main/bro-gen/accounts.yaml
+    - ../../../../../../robovm/cocoatouch/src/main/bro-gen/uikit.yaml
+    - ../../../../../../robovm/cocoatouch/src/main/bro-gen/social.yaml
+
+clang_args: ['-x', 'objective-c']
+
+header_root: '/../robopods/META-INF/robovm/ios/libs/'
+
+headers:
+    - TwitterCore.framework/Headers/TwitterCore.h
+
+typedefs:
+    TWTRGuestLogInCompletion: '@Block TWTRGuestLogInCompletion'
+    TWTRLogInCompletion: '@Block TWTRLogInCompletion'
+    TWTRSessionStoreRefreshCompletion: '@Block TWTRSessionStoreRefreshCompletion'
+    TWTRSessionStoreSaveCompletion: '@Block TWTRSessionStoreSaveCompletion'
+    TWTRSessionStoreBatchFetchCompletion: '@Block TWTRSessionStoreBatchFetchCompletion'
+    TWTRSessionStoreDeleteCompletion: '@Block TWTRSessionStoreDeleteCompletion'
+    TWTRSessionGuestLogInCompletion: '@Block TWTRSessionGuestLogInCompletion'
+
+enums:
+    TWTRAPIErrorCode: 
+        {prefix: TWTRAPIErrorCode}
+    TWTRErrorCode:
+        {prefix: TWTRErrorCode}
+    TWTRLogInErrorCode:
+        {prefix: TWTRLogInErrorCode}
+classes:
+    TWTRAuthConfig:
+        methods:    
+            '-init':
+                exclude: true
+            '-initWithConsumerKey:consumerSecret:':
+                trim_after_first_colon: true
+    TWTRGuestSession: 
+        properties:
+            'accessToken':
+                type: String
+            'guestToken':
+                type: String
+        methods:   
+            '-initWithAccessToken:guestToken:':
+                return_type: TWTRGuestSession
+                trim_after_first_colon:
+                parameters:
+                    accessToken:
+                        type: String
+                    guestToken:
+                        type: String
+            '-initWithSessionDictionary:':
+                return_type: TWTRGuestSession
+                trim_after_first_colon: true
+                parameters:
+                    sessionDictionary:
+                        type: NSDictionary<NSString, NSString>
+
+    TWTRSession: 
+        properties:
+            'authToken':
+                type: String
+            'authTokenSecret':
+                type: String
+            'userName':
+                type: String
+            'userID':
+                type: String
+        methods:   
+            '-initWithAuthToken:authTokenSecret:userName:userID:':
+                trim_after_first_colon: true
+                return_type: TWTRSession
+                parameters:
+                    authToken:
+                        type: String
+                    authTokenSecret:
+                        type: String
+                    userName:
+                        type: String
+                    userID:
+                        type: String
+            '-initWithSessionDictionary:':
+                trim_after_first_colon: true
+                return_type: TWTRSession
+                parameters:
+                    sessionDictionary:
+                        type: NSDictionary<NSString, NSString>
+    TWTRSessionStore:
+        methods:
+            '-init':
+                exclude: true
+
+protocols:
+    TWTRBaseSession: {}
+    TWTRAuthSession: {}
+    TWTRCoreOAuthSigning: 
+        methods:
+            '-OAuthEchoHeadersForRequestMethod:.*':
+                trim_after_first_colon: true
+        parameters:
+            parameters:
+                type: 'NSDictionary<NSString, NSString>'
+    TWTRSessionRefreshingStore:
+        methods:
+            '-refreshSessionClass:sessionID:completion:':
+                trim_after_first_colon: true
+                parameters:
+                    sessionClass: 
+                        type: Class
+                    sessionID:
+                        type: String
+                    completion:
+                        type: '@Block TWTRSessionStoreRefreshCompletion'
+
+            '-isExpiredSession:response:':
+                trim_after_first_colon: true
+                parameters:
+                    response:
+                        type: NSHTTPURLResponse
+                    session:
+                        type: NSObject
+    TWTRUserSessionStore:
+        methods:
+            '-saveSession:completion:':
+                trim_after_first_colon: true
+                return_type: '<T extends TWTRAuthSession>  void'
+                parameters:
+                    session:
+                        type: 'T'
+                    completion:
+                        type: '@Block TWTRSessionStoreSaveCompletion'
+            '-saveSessionWithAuthToken:authTokenSecret:completion:':
+                trim_after_first_colon: true
+                parameters:
+                    authToken:
+                        type: String
+                    authTokenSecret:
+                        type: String
+                    completion: 
+                        type: '@Block TWTRSessionStoreSaveCompletion'
+            '-sessionForUserID:':
+                trim_after_first_colon: true
+                return_type: '<T extends TWTRAuthSession> T'
+                parameters:
+                    userID:
+                        type: String
+            '-existingUserSessions':
+                return_type: NSArray<?>
+            '-session':
+                return_type: '<T extends TWTRAuthSession> T'
+            '-logOutUserID:':
+                trim_after_first_colon: true
+                parameters:
+                    userID:
+                        type: String
+    TWTRGuestSessionStore:
+        methods:
+            '-fetchGuestSessionWithCompletion:':
+                trim_after_first_colon: true
+                parameters:
+                    completion:
+                        type: '@Block TWTRSessionGuestLogInCompletion'
+functions:

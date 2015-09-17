@@ -45,7 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
     @NotImplemented("count")
-    public long getCount() { return 0; }
+    public @MachineSizedUInt long getCount() { return 0; }
     @NotImplemented("objectClassName")
     public String getObjectClassName() { return null; }
     @NotImplemented("realm")
@@ -54,26 +54,26 @@ import org.robovm.apple.foundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("objectAtIndex:")
-    public T objectAtIndex(long index) { return null; }
+    public T objectAtIndex(@MachineSizedUInt long index) { return null; }
     @NotImplemented("firstObject")
     public T firstObject() { return null; }
     @NotImplemented("lastObject")
     public T lastObject() { return null; }
     @NotImplemented("indexOfObject:")
-    public long indexOfObject(T object) { return 0; }
+    public @MachineSizedUInt long indexOfObject(T object) { return 0; }
     @NotImplemented("indexOfObjectWithPredicate:")
-    public long indexOfObjectWithPredicate(NSPredicate predicate) { return 0; }
+    public @MachineSizedUInt long indexOfObjectWithPredicate(NSPredicate predicate) { return 0; }
     @NotImplemented("objectsWithPredicate:")
     public RLMResults<T> objectsWithPredicate(NSPredicate predicate) { return null; }
     @NotImplemented("sortedResultsUsingProperty:ascending:")
-    public RLMResults<T> sortedResultsUsingProperty(NSString property, boolean ascending) { return null; }
+    public RLMResults<T> sortedResultsUsingProperty(String property, boolean ascending) { return null; }
     @NotImplemented("sortedResultsUsingDescriptors:")
-    public RLMResults<T> sortedResultsUsingDescriptors(List<RLMSortDescriptor> properties) { return null; }
+    public RLMResults<T> sortedResultsUsingDescriptors(NSArray<RLMSortDescriptor> properties) { return null; }
     @NotImplemented("objectAtIndexedSubscript:")
-    public T objectAtIndexedSubscript(long index) { return null; }
+    public NSObject objectAtIndexedSubscript(@MachineSizedUInt long index) { return null; }
     @NotImplemented("valueForKey:")
-    public long valueForKey(String key) { return 0; }
+    public NSObject valueForKey(String key) { return null; }
     @NotImplemented("setValue:forKey:")
-    public void setValue(T value, NSString key) {}
+    public void setValue(NSObject value, NSString key) {}
     /*</methods>*/
 }

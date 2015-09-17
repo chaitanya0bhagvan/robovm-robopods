@@ -1,0 +1,417 @@
+package: org.robovm.pods.crashlytics
+
+framework: Crashlytics
+
+include: 
+    - ../../../../../../robovm/cocoatouch/src/main/bro-gen/foundation.yaml
+
+clang_args: ['-x', 'objective-c']
+
+header_root: '/../robopods/META-INF/robovm/ios/libs/'
+
+headers:
+    - Crashlytics.framework/Headers/Crashlytics.h
+
+typedefs:
+    'void (^)(BOOL submit)': '@Block VoidBlock1<Boolean>'
+
+enums:
+
+classes:
+    Answers:
+        skip_skip_init_constructor: true
+        skip_def_constructor: true
+        methods:
+            '+logSignUpWithMethod:success:customAttributes:':
+                trim_after_first_colon: true
+                parameters:
+                    signUpMethodOrNil:
+                        type: String
+                    signUpSucceededOrNil:
+                        type: long
+                    customAttributesOrNil:
+                        type: NSDictionary<NSString, NSObject>
+            '+logLoginWithMethod:success:customAttributes:':
+                trim_after_first_colon: true
+                parameters:
+                    loginMethodOrNil:
+                        type: String
+                    loginSucceededOrNil:
+                        type: long
+                    customAttributesOrNil:
+                        type: NSDictionary<NSString, NSObject>
+            '+logShareWithMethod:contentName:contentType:contentId:customAttributes:':
+                trim_after_first_colon: true
+                parameters:
+                    shareMethodOrNil:
+                        type: String
+                    contentNameOrNil:
+                        type: String
+                    contentTypeOrNil:
+                        type: String
+                    contentIdOrNil:
+                        type: String
+                    customAttributesOrNil:
+                        type: NSDictionary<NSString, NSObject>
+            '+logInviteWithMethod:customAttributes:':
+                trim_after_first_colon: true
+                parameters:
+                    inviteMethodOrNil:
+                        type: String
+                    customAttributesOrNil:
+                        type: NSDictionary<NSString, NSObject>
+            '+logPurchaseWithPrice:currency:success:itemName:itemType:itemId:customAttributes:':
+                trim_after_first_colon: true
+                parameters:
+                    itemPriceOrNil:
+                        type: double
+                    currencyOrNil:
+                        type: String
+                    purchaseSucceededOrNil:
+                        type: long
+                    itemNameOrNil:
+                        type: String
+                    itemTypeOrNil:
+                        type: String
+                    itemIdOrNil:
+                        type: String
+                    customAttributesOrNil:
+                        type: NSDictionary<NSString, NSObject>
+            '+logLevelStart:customAttributes:':
+                trim_after_first_colon: true
+                parameters:
+                    levelNameOrNil:
+                        type: String
+                    customAttributesOrNil:
+                        type: NSDictionary<NSString, NSObject>
+            '+logLevelEnd:score:success:customAttributes:':
+                trim_after_first_colon: true
+                parameters:
+                    levelNameOrNil:
+                        type: String
+                    scoreOrNil:
+                        type: long
+                    levelCompletedSuccesfullyOrNil:
+                        type: long
+                    customAttributesOrNil:
+                        type: NSDictionary<NSString, NSObject>
+            '+logAddToCartWithPrice:currency:itemName:itemType:itemId:customAttributes:':
+                trim_after_first_colon: true
+                parameters:
+                    itemPriceOrNil:
+                        type: double
+                    currencyOrNil:
+                        type: String
+                    itemNameOrNil:
+                        type: String
+                    itemTypeOrNil:
+                        type: String
+                    itemIdOrNil:
+                        type: String
+                    customAttributesOrNil:
+                        type: NSDictionary<NSString, NSObject>
+            '+logStartCheckoutWithPrice:currency:itemCount:customAttributes:':
+                trim_after_first_colon: true
+                parameters:
+                    totalPriceOrNil:
+                        type: double
+                    currencyOrNil:
+                        type: String
+                    itemCountOrNil:
+                        type: long
+                    customAttributesOrNil:
+                        type: NSDictionary<NSString, NSObject>
+
+            '+logRating:contentName:contentType:contentId:customAttributes:':
+                trim_after_first_colon: true
+                parameters:
+                    ratingOrNil:
+                        type: long
+                    contentNameOrNil:
+                        type: String
+                    contentTypeOrNil:
+                        type: String
+                    contentIdOrNil:
+                        type: String
+                    customAttributesOrNil:
+                        type: NSDictionary<NSString, NSObject>
+
+            '+logContentViewWithName:contentType:contentId:customAttributes:':
+                trim_after_first_colon: true
+                parameters:
+                    contentNameOrNil:
+                        type: String
+                    contentTypeOrNil:
+                        type: String
+                    contentIdOrNil:
+                        type: String
+                    customAttributesOrNil:
+                        type: NSDictionary<NSString, NSObject>
+
+
+            '+logSearchWithQuery:customAttributes:':
+                trim_after_first_colon: true
+                parameters:
+                    queryOrNil:
+                        type: String
+                    customAttributesOrNil:
+                        type: NSDictionary<NSString, NSObject>
+
+            '+logCustomEventWithName:customAttributes:':
+                trim_after_first_colon: true
+                parameters:
+                    eventName:
+                        type: String
+                    customAttributesOrNil:
+                        type: NSDictionary<NSString, NSObject>
+
+    Crashlytics:
+        skip_def_constructor: true
+        skip_skip_init_constructor: true
+        properties:
+            'delegate':
+                type: T
+            'APIKey':
+                type: String
+                readonly: true
+            'version':
+                type: String
+                readonly: true
+            'debugMode':
+                type: boolean
+        methods:
+            '+startWithAPIKey:':
+                trim_after_first_colon: true
+                return_type: Crashlytics
+                parameters:
+                    apiKey:
+                        type: String
+            '+startWithAPIKey:afterDelay:':
+                exclude: true
+            '+startWithAPIKey:delegate:':
+                trim_after_first_colon: true
+                return_type: '<T extends CrashlyticsDelegate> Crashlytics'
+                parameters:
+                    apiKey:
+                        type: String
+                    delegate: 
+                        type: 'T'
+            '+startWithAPIKey:delegate:afterDelay:':
+                exclude: true
+            '+sharedInstance':
+                return_type: Crashlytics
+            '-setUserIdentifier:':
+                trim_after_first_colon: true
+                parameters:
+                    identifier:
+                        type: String
+            '-setUserName:':
+                trim_after_first_colon: true
+                parameters:
+                    name:
+                        type: String
+            '-setUserEmail:':
+                trim_after_first_colon: true
+                parameters:
+                    email:
+                        type: String
+            '+setUserIdentifier:':
+                exclude: true
+            '+setUserName:':
+                exclude: true
+            '+setUserEmail:':
+                exclude: true
+            '-setObjectValue:forKey:':
+                trim_after_first_colon: true
+                parameters:
+                    value:
+                        type: NSObject
+                    key:
+                        type: String
+            '-setIntValue:forKey:':
+                trim_after_first_colon: true
+                parameters:
+                    value: 
+                        type: int
+                    key:
+                        type: String
+            '-setBoolValue:forKey:':
+                trim_after_first_colon: true
+                parameters:
+                    value:
+                        type: boolean
+                    key:
+                        type: String
+            '-setFloatValue:forKey:':
+                trim_after_first_colon: true
+                parameters:
+                    value:
+                        type: float
+                    key:
+                        type: String
+            '+setObjectValue:forKey:':
+                exclude: true
+            '+set.*':
+                exclude: true
+            '-recordCustomExceptionName:reason:frameArray:':
+                trim_after_first_colon: true
+                parameters:
+                    name:
+                        type: String
+                    reason:
+                        type: String
+                    frameArray:
+                        type: NSArray<CLSStackFrame>
+            '-logEvent:.*':
+                exclude: true
+            '+logEvent:.*':
+                exclude: true
+    CLSStackFrame:
+        skip_skip_init_constructor: true
+        skip_def_constructor: true
+        properties:
+            'symbol':
+                type: String
+            'library':
+                type: String
+            'fileName':
+                type: String
+            'lineNumber':
+                type: long
+            'offset':
+                type: long
+            'address':
+                type: long
+        methods:
+            '+stackFrame':
+                return_type: CLSStackFrame
+            '+stackFrameWithAddress:':
+                trim_after_first_colon: true
+                return_type: CLSStackFrame
+                parameters:
+                    address:
+                        type: long
+            '+stackFrameWithSymbol:':
+                trim_after_first_colon: true
+                return_type: CLSStackFrame
+                parameters:
+                    symbol:
+                        type: String
+
+    CLSReport:
+        skip_def_constructor: true
+        skip_skip_init_constructor: true
+        protocols:
+            [CLSCrashReport]
+        properties:
+            'identifier':
+                type: String
+                readonly: true
+            'customKeys':
+                type: NSDictionary<?, ?>
+                readonly: true
+            'bundleVersion':
+                type: String
+                readonly: true
+            'bundleShortVersionString':
+                type: String
+                readonly: true
+            'dateCreated':
+                type: NSDate
+                readonly: true
+            'crashedOnDate':
+                type: NSDate
+                readonly: true
+            'OSVersion':
+                type: String
+                readonly: true
+            'OSBuildVersion':
+                type: String
+                readonly: true
+            'isCrash':
+                type: boolean
+                readonly: true
+            'userIdentifier':
+                type: String
+            'userName':
+                type: String
+            'userEmail':
+                type: String
+        methods:
+            '-init':
+                exclude: true
+            '+new':
+                exclude: true
+            '-setObjectValue:forKey:':
+                trim_after_first_colon: true
+                parameters: 
+                    value: 
+                        type: NSObject
+                    key:
+                        type: String
+protocols:
+    CrashlyticsDelegate:
+        methods:
+            '-crashlyticsDidDetectCrashDuringPreviousExecution:':
+                exclude: true
+            '-crashlytics:didDetectCrashDuringPreviousExecution:':
+                exclude: true
+            '-crashlyticsDidDetectReportForLastExecution:completionHandler:':
+                trim_after_first_colon: true
+                parameters:
+                    report:
+                        type: CLSReport
+                    completionHandler:
+                        type: '@Block VoidBlock1<Boolean>'
+            '-crashlyticsCanUseBackgroundSessions:':
+                trim_after_first_colon: true
+                parameters:
+                    crashlytics:
+                        type: Crashlytics
+    CLSCrashReport: 
+        properties:
+            'identifier':
+                type: String
+                readonly: true
+            'customKeys':
+                type: NSDictionary<?, ?>
+                readonly: true
+            'bundleVersion':
+                type: String
+                readonly: true
+            'bundleShortVersionString':
+                type: String
+                readonly: true
+            'crashedOnDate':
+                type: NSDate
+                readonly: true
+            'OSVersion':
+                type: String
+                readonly: true
+            'OSBuildVersion':
+                type: String
+                readonly: true
+
+functions:
+    RLMDynamicValidatedSet:
+        class: RLMObject
+        name: dynamicValidatedSet
+        parameters:
+            obj:
+                type: 'RLMObjectBasePtr'
+            propName:
+                type: 'String'
+            val:
+                type: 'long'
+    RLMValidatedGetProperty:
+        class: RLMObject
+        name: getProperty
+    RLMDynamicGet:
+        class: RLMObject
+        name: get
+        return_type: 'long'
+    RLMReplaceSharedSchemaMethod:
+        class: RLMObject
+        parameters:
+            accessorClass:
+                type: 'Class<?>'

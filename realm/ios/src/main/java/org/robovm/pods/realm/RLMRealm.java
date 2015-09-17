@@ -84,7 +84,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "addObject:")
     public native void addObject(RLMObject object);
     @Method(selector = "addObjects:")
-    public native void addObjects(NSArray<?> array);
+    public native void addObjects(NSArray<RLMObject> array);
     @Method(selector = "addOrUpdateObject:")
     public native void addOrUpdateObject(RLMObject object);
     @Method(selector = "addOrUpdateObjectsFromArray:")
@@ -106,7 +106,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "realmWithPath:encryptionKey:readOnly:error:")
     public static native RLMRealm realmWithPath(String path, NSData key, boolean readonly, NSError.NSErrorPtr error);
     @Method(selector = "setEncryptionKey:forRealmsAtPath:")
-    public static native void setEncryptionKey(NSData key, NSString path);
+    public static native void setEncryptionKey(NSData key, String path);
     @Method(selector = "inMemoryRealmWithIdentifier:")
     public static native RLMRealm inMemoryRealm(String identifier);
     @Method(selector = "defaultRealmPath")
@@ -116,11 +116,11 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "setDefaultRealmSchemaVersion:withMigrationBlock:")
     public static native void setDefaultRealmSchemaVersion(long version, @Block RLMMigrationCallback block);
     @Method(selector = "setSchemaVersion:forRealmAtPath:withMigrationBlock:")
-    public static native void setSchemaVersion(long version, NSString realmPath, @Block RLMMigrationCallback block);
+    public static native void setSchemaVersion(long version, String realmPath, @Block RLMMigrationCallback block);
     @Method(selector = "schemaVersionAtPath:error:")
     public static native long schemaVersionAtPath(String realmPath, NSError.NSErrorPtr error);
     @Method(selector = "schemaVersionAtPath:encryptionKey:error:")
-    public static native long schemaVersionAtPath(NSString realmPath, NSData key, NSError.NSErrorPtr error);
+    public static native long schemaVersionAtPath(String realmPath, NSData key, NSError.NSErrorPtr error);
     @Method(selector = "migrateRealm:")
     public static native NSError migrateRealm(NSObject configuration);
     @Method(selector = "migrateRealmAtPath:")
